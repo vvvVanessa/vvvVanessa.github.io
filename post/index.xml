@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Vanessa</title>
+    <link>http://vvvVanessa.github.io/post/</link>
+    <description>Recent content in Posts on Vanessa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn</language>
+    <copyright>Written by 仙女榕</copyright>
+    <lastBuildDate>Sun, 28 Jan 2018 10:35:45 +0800</lastBuildDate>
+    
+	<atom:link href="http://vvvVanessa.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Poj1417</title>
+      <link>http://vvvVanessa.github.io/post/acm/poj1417%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86&#43;dp%E6%B1%82%E8%B7%AF%E5%BE%84%E6%9D%A1%E6%95%B0/</link>
+      <pubDate>Sun, 28 Jan 2018 10:35:45 +0800</pubDate>
+      
+      <guid>http://vvvVanessa.github.io/post/acm/poj1417%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86&#43;dp%E6%B1%82%E8%B7%AF%E5%BE%84%E6%9D%A1%E6%95%B0/</guid>
+      <description>题目链接
+题意 输入格式如下
+ n p1 p2
+x1 y1 a1
+x2 y2 a2
+&amp;hellip;
+xi yi ai
+&amp;hellip;
+xn yn an
+ 有两种人。一种是好人，总说真话；一种是坏人，总说假话。
+n 个信息，p1个好人，p2个坏人。
+ai为yes，表示xi说yi是好人；ai为no，表示xi说yi是坏人。
+若给出的n个信息能够确认哪些人是好人，则按升序输出；否则输出no
+思路 可以看出，不管xi是好人还是坏人，若ai为yes，则xi和yi为同类，为no则为异类。
+用带权并查集处理n个信息后，可能会出现多个集合（设数量为m）。每个集合有两种点：权值与根相同或不同。（此处只是把每个集合分成两部分，但并不知道它们分别是好人还是坏人）
+对于m个集合中的点，用dp处理。注意和01背包的区别：01背包解决的是一个物品装或不装的问题；这道题中每件物品都要装，要解决的是装它的a部分还是b部分的问题。
+01背包求路径条数的转移方程：dp[i][j] = dp[i - 1][j] + dp[i][j-v[i]];
+这道题的转移方程：dp[i][j] = dp[i - 1][j - a] + dp[i - 1][j - b];
+最大的区别是 dp[i][j] 与之前状态 dp[i-1][j] 无关
+此外，由于j - a和j - b 大于零的条件可能不同，实际要分开写。
+代码 #include &amp;lt;cstdio&amp;gt; #include &amp;lt;cstring&amp;gt; #include &amp;lt;iostream&amp;gt; #include &amp;lt;algorithm&amp;gt; #include &amp;lt;vector&amp;gt; using namespace std; const int maxn = 600 + 10; int n, p1, p2; int fa[maxn], tag[maxn], sz[maxn], dp[maxn][maxn], path[maxn][maxn], id[maxn]; vector&amp;lt;int&amp;gt;v[maxn][2]; int find(int x) { if(x == fa[x]) return x; int newfa = find(fa[x]); if(fa[x] !</description>
+    </item>
+    
+  </channel>
+</rss>

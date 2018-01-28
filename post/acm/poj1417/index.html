@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    Poj1417 | Vanessa
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://vvvVanessa.github.io/post/acm/poj1417/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://vvvVanessa.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Vanessa" />
+  <link href="http://vvvVanessa.github.io/index.xml" rel="feed" type="application/rss+xml" title="Vanessa" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://vvvVanessa.github.io/">Vanessa</a></h1>
+        <h2>There must be something more.</h2>
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          
+          
+          <li><a href="https://github.com/vvvVanessa" target="_blank">GitHub</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Poj1417</h1>
+      <div class="meta">
+        Jan 28, 2018 &nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<h3 id="带权并查集-dp求路径">带权并查集+DP求路径</h3>
+
+<p><a href="https://vjudge.net/problem/POJ-1417">题目链接</a></p>
+
+<h4 id="题意">题意</h4>
+
+<p>输入格式如下</p>
+
+<blockquote>
+<p>n p1 p2</p>
+
+<p>x1 y1 a1</p>
+
+<p>x2 y2 a2</p>
+
+<p>&hellip;</p>
+
+<p>xi yi ai</p>
+
+<p>&hellip;</p>
+
+<p>xn yn an</p>
+</blockquote>
+
+<p>有两种人。一种是好人，总说真话；一种是坏人，总说假话。</p>
+
+<p>n 个信息，p1个好人，p2个坏人。</p>
+
+<p>ai为yes，表示xi说yi是好人；ai为no，表示xi说yi是坏人。</p>
+
+<p>若给出的n个信息能够确认哪些人是好人，则按升序输出；否则输出no</p>
+
+<h4 id="思路">思路</h4>
+
+<p>可以看出，不管xi是好人还是坏人，若ai为yes，则xi和yi为同类，为no则为异类。</p>
+
+<p>用带权并查集处理n个信息后，可能会出现多个集合（设数量为m）。每个集合有两种点：权值与根相同或不同。（此处只是把每个集合分成两部分，但并不知道它们分别是好人还是坏人）</p>
+
+<p>对于m个集合中的点，用dp处理。注意和01背包的区别：01背包解决的是一个物品装或不装的问题；这道题中每件物品都要装，要解决的是装它的a部分还是b部分的问题。</p>
+
+<p>01背包求路径条数的转移方程：<code>dp[i][j] = dp[i - 1][j] + dp[i][j-v[i]];</code></p>
+
+<p>这道题的转移方程：<code>dp[i][j] = dp[i - 1][j - a] + dp[i - 1][j - b];</code></p>
+
+<p>最大的区别是 <code>dp[i][j]</code> 与之前状态 <code>dp[i-1][j]</code> 无关</p>
+
+<p>此外，由于<code>j - a</code>和<code>j - b</code> 大于零的条件可能不同，实际要分开写。</p>
+
+<h4 id="代码">代码</h4>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+const int maxn = 600 + 10;
+int n, p1, p2;
+int fa[maxn], tag[maxn], sz[maxn], dp[maxn][maxn], path[maxn][maxn], id[maxn];
+vector&lt;int&gt;v[maxn][2];
+
+int find(int x) {
+    if(x == fa[x]) return x;
+    int newfa = find(fa[x]);
+    if(fa[x] != newfa) {
+	tag[x] *= tag[fa[x]];
+	fa[x] = newfa;
+    }
+    return newfa;
+}
+
+int uni(int x, int y, int t) {
+    int fax = find(x);
+    int fay = find(y);
+    if(fax == fay) {
+	if(tag[x]*tag[y] == t) return 1;
+	else return 0;
+    }
+    if(sz[fax] &lt; sz[fay]) swap(fax, fay);
+    sz[fax] += sz[fay];
+    sz[fay] = 0;
+    fa[fay] = fax;
+    tag[fay] = tag[x]*tag[y]*t;
+    return 1;
+}
+
+void init() {
+    memset(dp, 0, sizeof(dp));
+    memset(path, 0, sizeof(path));
+    for(int i = 0 ; i &lt; maxn ; i++) {
+	fa[i] = i;
+	tag[i] = sz[i] = 1;
+	id[i] = 0;
+	v[i][0].clear();
+	v[i][1].clear();
+    }
+}
+    
+//#define LOOP
+int main () {
+#ifdef LOOP 
+    freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin);
+    freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout);
+#endif
+    while(scanf(&quot;%d%d%d&quot;, &amp;n, &amp;p1, &amp;p2)) {
+	if(!(n || p1 || p2)) break;
+	init();
+	bool tmp_t = 1;
+	for(int i = 0 ; i &lt; n ; i++) {
+	    int a, b;
+	    char s[10];
+	    scanf(&quot;%d%d%s&quot;, &amp;a, &amp;b, s);
+	    if(strcmp(s, &quot;no&quot;) == 0) { 
+		if(!uni(a, b, -1)) tmp_t = 0;
+	    }
+	    else {
+		if(!uni(a, b, 1)) tmp_t = 0;
+	    }
+	}
+	if(tmp_t == 0) {
+	    cout&lt;&lt;&quot;no&quot;&lt;&lt;endl;
+	    continue;
+	} 
+	int cnt = 1;
+	for(int i = 1 ; i &lt;= p1+p2 ; i++) {
+	    if(find(i) == i) { 
+		id[i] = cnt++;
+		v[id[i]][0].push_back(i);
+	    }
+	}
+	for(int i = 1 ; i &lt;= p1+p2 ; i++) {
+	    if(fa[i] != i) {
+		if(tag[i] != tag[fa[i]]) v[id[fa[i]]][1].push_back(i);
+		else v[id[fa[i]]][0].push_back(i);
+	    }
+	}
+
+	//dp
+	dp[0][0] = 1;
+	for(int i = 1 ; i &lt; cnt ; i++) {
+	    int sz0 = v[i][0].size();
+	    int sz1 = v[i][1].size();
+	    for(int j = 0 ; j &lt;= p1 ; j++) {
+		if(j - sz0 &gt;= 0) {
+	    	    dp[i][j] += dp[i - 1][j - sz0];
+	    	    if(dp[i][j] == 1 &amp;&amp; dp[i - 1][j - sz0] == 1) path[i][j] = 0;
+		}
+		if(j - sz1 &gt;= 0) {
+		    dp[i][j] += dp[i - 1][j - sz1];
+		    if(dp[i][j] == 1 &amp;&amp; dp[i - 1][j - sz1] == 1) path[i][j] = 1;
+		}
+	    }
+	}
+
+	if(dp[cnt - 1][p1] != 1) {
+	    cout&lt;&lt;&quot;no&quot;&lt;&lt;endl;
+	    continue;
+	}
+	vector&lt;int&gt;ans;
+	int tot = p1;
+	for(int i = cnt - 1 ; i &gt; 0 ; i--) {
+	    int sub = path[i][tot];
+	    int sz = v[i][sub].size();  
+	    tot -= sz;
+	    for(int j = 0 ; j &lt; sz ; j++) ans.push_back(v[i][sub][j]);
+	}
+	sort(ans.begin(), ans.end());
+	for(int i = 0 ; i &lt; p1 ; i++) 
+	    printf(&quot;%d\n&quot;, ans[i]);
+	cout&lt;&lt;&quot;end&quot;&lt;&lt;endl;
+    }
+    return 0;
+}
+
+</code></pre>
+
+      
+      
+      
+    </article>
+    
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      Written by 仙女榕
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+
