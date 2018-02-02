@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>状压 on Vanessa</title>
+    <link>http://vvvVanessa.github.io/categories/%E7%8A%B6%E5%8E%8B/</link>
+    <description>Recent content in 状压 on Vanessa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 02 Feb 2018 20:58:36 +0800</lastBuildDate>
+    
+	<atom:link href="http://vvvVanessa.github.io/categories/%E7%8A%B6%E5%8E%8B/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HDU3001 [旅行商&#43;三进制状压]</title>
+      <link>http://vvvVanessa.github.io/post/acm/hdu3001/</link>
+      <pubDate>Fri, 02 Feb 2018 20:58:36 +0800</pubDate>
+      
+      <guid>http://vvvVanessa.github.io/post/acm/hdu3001/</guid>
+      <description>题目链接 题意 地图上有n个点，m条边，每条边有一个权值。起点、终点不固定的情况下，求走遍所有点的最小权值。每个点最多访问两次。 如果不能走遍所有</description>
+    </item>
+    
+  </channel>
+</rss>

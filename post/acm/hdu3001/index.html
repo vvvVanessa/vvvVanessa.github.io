@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>HDU3001 [旅行商&#43;三进制状压] - Vanessa</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Vanessa" />
+  <meta name="description" content="题目链接 题意 地图上有n个点，m条边，每条边有一个权值。起点、终点不固定的情况下，求走遍所有点的最小权值。每个点最多访问两次。 如果不能走遍所有" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.35" />
+
+
+<link rel="canonical" href="http://vvvVanessa.github.io/post/acm/hdu3001/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=3.0.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+<meta property="og:title" content="HDU3001 [旅行商&#43;三进制状压]" />
+<meta property="og:description" content="题目链接 题意 地图上有n个点，m条边，每条边有一个权值。起点、终点不固定的情况下，求走遍所有点的最小权值。每个点最多访问两次。 如果不能走遍所有" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://vvvVanessa.github.io/post/acm/hdu3001/" />
+
+
+
+<meta property="article:published_time" content="2018-02-02T20:58:36&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-02-02T20:58:36&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="HDU3001 [旅行商&#43;三进制状压]">
+<meta itemprop="description" content="题目链接 题意 地图上有n个点，m条边，每条边有一个权值。起点、终点不固定的情况下，求走遍所有点的最小权值。每个点最多访问两次。 如果不能走遍所有">
+
+
+<meta itemprop="datePublished" content="2018-02-02T20:58:36&#43;08:00" />
+<meta itemprop="dateModified" content="2018-02-02T20:58:36&#43;08:00" />
+<meta itemprop="wordCount" content="929">
+
+
+
+<meta itemprop="keywords" content="算法,HDU," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="HDU3001 [旅行商&#43;三进制状压]"/>
+<meta name="twitter:description" content="题目链接 题意 地图上有n个点，m条边，每条边有一个权值。起点、终点不固定的情况下，求走遍所有点的最小权值。每个点最多访问两次。 如果不能走遍所有"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Vanessa</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Vanessa</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">HDU3001 [旅行商&#43;三进制状压]</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-02-02 </span>
+        <div class="post-category">
+            
+              <a href="/categories/%E6%97%85%E8%A1%8C%E5%95%86/"> 旅行商 </a>
+            
+              <a href="/categories/%E7%8A%B6%E5%8E%8B/"> 状压 </a>
+            
+              <a href="/categories/dp/"> dp </a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#题意">题意</a></li>
+<li><a href="#思路">思路</a></li>
+<li><a href="#代码">代码</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p><a href="https://vjudge.net/problem/HDU-3001">题目链接</a></p>
+
+<h4 id="题意">题意</h4>
+
+<p>地图上有n个点，m条边，每条边有一个权值。起点、终点不固定的情况下，求走遍所有点的最小权值。每个点最多访问两次。</p>
+
+<p>如果不能走遍所有点，输出-1。</p>
+
+<h4 id="思路">思路</h4>
+
+<ul>
+<li>先说最普通的二进制状压dp在旅行商问题中的状态转移：</li>
+</ul>
+
+<p><code>dp[k][i]</code>表示已经过的所有点的状态为k，当前在第i个点时所需的最小权值。k对应的二进制数的每一位代表该位对应的点是否被访问。可以看出，当前状态k只能由比k小的状态转移而来（因为状态转移的过程就是不断增加访问点的过程，即k通过位运算不断增大）。因此在当前状态k下，要想确保比k小的所有状态转移完毕，必须把对k的遍历放在最外层循环。伪代码如下</p>
+
+<pre><code>点的下标从0开始，dis表示给出的边权，dp、dis数组初始化为INF
+for 从 0 到 1 &lt;&lt; n的状态k
+	for k包含的顶点i
+		for 与i相连的所有其他顶点j
+			dp[k][i] = min dp[k^(1&lt;&lt;i)][j] + dis[j][i];
+</code></pre>
+
+<ul>
+<li>三进制状压：</li>
+</ul>
+
+<p>和二进制相比，没有可以直接用的位运算操作符，于是定义以下两个数组：</p>
+
+<p><code>three[i]</code> ，表示3的i次方对应的十进制数，相当于二进制中的 <code>1 &lt;&lt; i</code></p>
+
+<blockquote>
+<p><code>three[i] = three[i - 1] * 3</code></p>
+</blockquote>
+
+<p><code>digit[i][j]</code> ，表示十进制数i对应的三进制数的第j位的值（0，1或2），相当于二进制中的<code>i &amp; (1 &lt;&lt; j)</code></p>
+
+<pre><code class="language-cpp">int tmp = i, dig = 0;
+	while(tmp) {
+		digit[i][dig++] = tmp%3;
+		tmp /= 3;
+	}
+</code></pre>
+
+<ul>
+<li>一些小细节：</li>
+</ul>
+
+<p>对于这种题的二进制状压，(1 &lt;&lt; n) - 1表示所有点都走过（都为1）的情况，因此最后结果只需单开一个循环<code>for i in [0 : n - 1]</code>得出<code>dp[(1 &lt;&lt; n) - 1][i]</code>的最小值即可。然而在三进制中1和2都代表已访问过，能表示“所有点都走过”的状态则不只一个。为了防止这部分枚举带来的麻烦，可以采取边dp边更新答案的方式。具体细节见代码。</p>
+
+<h4 id="代码">代码</h4>
+
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int maxn = 11;
+const int maxm = 1e5;
+const int INF = 0xfffffff;
+int n, m;
+int dis[maxn][maxn], dp[maxm][maxn];
+int digit[maxm][maxn];
+int three[maxn];
+
+void init() {
+    three[0] = 1;
+    for (int i = 1 ; i &lt; maxn ; i++)
+	three[i] = three[i - 1]*3;
+    for (int i = 0 ; i &lt; three[10] ; i++) {
+	int tmp = i, dig = 0;
+	while(tmp) {
+	    digit[i][dig++] = tmp%3;
+	    tmp /= 3;
+	}
+    } 
+}
+//#define LOOP
+int main() {
+#ifdef LOOP
+    freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin);
+    freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout);
+#endif
+    init();
+    while(cin&gt;&gt;n&gt;&gt;m) {
+	for (int i = 0 ; i &lt; maxm ; i++) {
+	    for (int j = 0 ; j &lt; maxn ; j++)
+		dp[i][j] = INF;
+	}
+	for (int i = 0 ; i &lt; maxn ; i++)
+	    for (int j = 0 ; j &lt; maxn ; j++)
+		dis[i][j] = INF;
+	int ans = INF;
+
+	for(int i = 0 ; i &lt; m ; i++) {
+	    int u, v, w;
+	    scanf(&quot;%d%d%d&quot;, &amp;u, &amp;v, &amp;w);
+	    --u; --v;
+	    dis[u][v] = dis[v][u] = min(dis[u][v], w);
+	}
+	for (int i = 0 ; i &lt; n ; i++) 
+	    dp[three[i]][i] = 0;
+	for (int k = 0 ; k &lt; three[n] ; k++) {
+	    bool tmp = 1;
+	    for (int i = 0 ; i &lt; n ; i++) {
+		if(digit[k][i]) {
+		    for (int j = 0 ; j &lt; n ; j++) {
+			dp[k][i] = min(dp[k][i], dp[k - three[i]][j] + dis[j][i]);
+		    }
+		}
+		else tmp = 0;
+	    }
+	    if (tmp) {
+		for (int i = 0 ; i &lt; n ; i++) 
+		    ans = min (ans, dp[k][i]);
+	    }
+	}
+	if (ans == INF) cout&lt;&lt;-1&lt;&lt;endl;
+	else cout&lt;&lt;ans&lt;&lt;endl;
+    }
+    return 0;
+}
+
+</code></pre>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Vanessa</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2018-02-02</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+          
+          <a href="/tags/hdu/">HDU</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/acm/poj1417%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86&#43;dp%E6%B1%82%E8%B7%AF%E5%BE%84%E6%9D%A1%E6%95%B0/">
+            <span class="next-text nav-default">POJ1417 [带权并查集&#43;DP求路径条数]</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+  
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:rongma1997@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="http://vvvVanessa.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Vanessa</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=3.0.0"></script>
+
+
+
+
+</body>
+</html>
