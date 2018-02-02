@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://vvvVanessa.github.io/sitemap.xml
