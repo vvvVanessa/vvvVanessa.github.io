@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://vvvVanessa.github.io/acm/hdu3001/</loc>
+    <lastmod>2018-02-02T20:58:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://vvvVanessa.github.io/post/acm/hdu3001/</loc>
     <lastmod>2018-02-02T20:58:36+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -10,10 +17,24 @@
   </url>
   
   <url>
-    <loc>http://vvvVanessa.github.io/post/acm/poj1417%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86&#43;dp%E6%B1%82%E8%B7%AF%E5%BE%84%E6%9D%A1%E6%95%B0/</loc>
+    <loc>http://vvvVanessa.github.io/acm/poj1417/</loc>
     <lastmod>2018-01-28T10:35:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://vvvVanessa.github.io/post/acm/poj1417/</loc>
+    <lastmod>2018-01-28T10:35:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://vvvVanessa.github.io/acm/</loc>
+    <lastmod>2018-02-02T20:58:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -23,7 +44,7 @@
   </url>
   
   <url>
-    <loc>http://vvvVanessa.github.io/categories/dp/</loc>
+    <loc>http://vvvVanessa.github.io/tags/dp/</loc>
     <lastmod>2018-02-02T20:58:36+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
@@ -65,28 +86,21 @@
   </url>
   
   <url>
-    <loc>http://vvvVanessa.github.io/categories/%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86/</loc>
+    <loc>http://vvvVanessa.github.io/tags/%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86/</loc>
     <lastmod>2018-01-28T10:35:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://vvvVanessa.github.io/categories/%E6%97%85%E8%A1%8C%E5%95%86/</loc>
+    <loc>http://vvvVanessa.github.io/tags/%E6%97%85%E8%A1%8C%E5%95%86/</loc>
     <lastmod>2018-02-02T20:58:36+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://vvvVanessa.github.io/categories/%E7%8A%B6%E5%8E%8B/</loc>
-    <lastmod>2018-02-02T20:58:36+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://vvvVanessa.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
+    <loc>http://vvvVanessa.github.io/tags/%E7%8A%B6%E5%8E%8B/</loc>
     <lastmod>2018-02-02T20:58:36+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>

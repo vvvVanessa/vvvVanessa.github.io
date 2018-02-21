@@ -6,6 +6,7 @@
     <description>Recent content in Poj on Vanessa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+    <copyright>Vanessa</copyright>
     <lastBuildDate>Sun, 28 Jan 2018 10:35:45 +0800</lastBuildDate>
     
 	<atom:link href="http://vvvVanessa.github.io/tags/poj/index.xml" rel="self" type="application/rss+xml" />
@@ -13,10 +14,19 @@
     
     <item>
       <title>POJ1417 [带权并查集&#43;DP求路径条数]</title>
-      <link>http://vvvVanessa.github.io/post/acm/poj1417%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86&#43;dp%E6%B1%82%E8%B7%AF%E5%BE%84%E6%9D%A1%E6%95%B0/</link>
+      <link>http://vvvVanessa.github.io/acm/poj1417/</link>
       <pubDate>Sun, 28 Jan 2018 10:35:45 +0800</pubDate>
       
-      <guid>http://vvvVanessa.github.io/post/acm/poj1417%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86&#43;dp%E6%B1%82%E8%B7%AF%E5%BE%84%E6%9D%A1%E6%95%B0/</guid>
+      <guid>http://vvvVanessa.github.io/acm/poj1417/</guid>
+      <description>题目链接 题意 输入格式如下 n p1 p2 x1 y1 a1 x2 y2 a2 &amp;hellip; xi yi ai &amp;hellip; xn yn an 有两种人。一种是好人，总说真话；一种是坏人，总说假话。 n 个信息，p1个好人，p2个</description>
+    </item>
+    
+    <item>
+      <title>POJ1417 [带权并查集&#43;DP求路径条数]</title>
+      <link>http://vvvVanessa.github.io/post/acm/poj1417/</link>
+      <pubDate>Sun, 28 Jan 2018 10:35:45 +0800</pubDate>
+      
+      <guid>http://vvvVanessa.github.io/post/acm/poj1417/</guid>
       <description>题目链接 题意 输入格式如下 n p1 p2 x1 y1 a1 x2 y2 a2 &amp;hellip; xi yi ai &amp;hellip; xn yn an 有两种人。一种是好人，总说真话；一种是坏人，总说假话。 n 个信息，p1个好人，p2个</description>
     </item>
     

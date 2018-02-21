@@ -6,10 +6,20 @@
     <description>Recent content in Hdu on Vanessa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+    <copyright>Vanessa</copyright>
     <lastBuildDate>Fri, 02 Feb 2018 20:58:36 +0800</lastBuildDate>
     
 	<atom:link href="http://vvvVanessa.github.io/tags/hdu/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>HDU3001 [旅行商&#43;三进制状压]</title>
+      <link>http://vvvVanessa.github.io/acm/hdu3001/</link>
+      <pubDate>Fri, 02 Feb 2018 20:58:36 +0800</pubDate>
+      
+      <guid>http://vvvVanessa.github.io/acm/hdu3001/</guid>
+      <description>题目链接 题意 地图上有n个点，m条边，每条边有一个权值。起点、终点不固定的情况下，求走遍所有点的最小权值。每个点最多访问两次。 如果不能走遍所有</description>
+    </item>
     
     <item>
       <title>HDU3001 [旅行商&#43;三进制状压]</title>
